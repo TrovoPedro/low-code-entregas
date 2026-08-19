@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#d9c2ff" />
+      <stop offset="1" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#fff" rx="24" />
+  <g transform="translate(120,80) scale(1.2)">
+    <path d="M260 40c90 0 170 72 170 160s-80 160-170 160S90 290 90 200 170 40 260 40z" fill="url(#g)" stroke="#2b0036" stroke-width="8"/>
+    <!-- holes -->
+    <g fill="#fff" opacity="0.95">
+      <circle cx="130" cy="160" r="12"/>
+      <circle cx="200" cy="115" r="12"/>
+      <circle cx="280" cy="115" r="12"/>
+      <circle cx="350" cy="160" r="12"/>
+      <circle cx="260" cy="210" r="12"/>
+    </g>
+    <!-- subtle inner plate -->
+    <path d="M140 110c35-28 200-28 235 0" fill="none" stroke="#ffffff66" stroke-width="18" stroke-linecap="round"/>
+  </g>
+  <!-- caption -->
+  <text x="50" y="560" fill="#6b6b7a" font-family="Inter, Arial" font-size="16">Desert Pro — Ferradura para camelos</text>
+</svg>

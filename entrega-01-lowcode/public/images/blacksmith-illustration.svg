@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <rect width="100%" height="100%" fill="#fff" rx="20" />
+  <g transform="translate(60,60)" fill="#5b1fa6">
+    <rect x="40" y="360" width="140" height="40" rx="8" />
+    <path d="M260 80c50 0 100 50 100 100s-50 100-100 100-100-50-100-100 50-100 100-100z"/>
+  </g>
+  <g transform="translate(320,200)" fill="#2b0036" opacity="0.06">
+    <rect x="0" y="0" width="260" height="160" rx="12" />
+  </g>
+  <text x="40" y="560" fill="#6b6b7a" font-family="Inter, Arial" font-size="16">Long Ride — Produção e acabamento</text>
+</svg>
