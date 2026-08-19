@@ -82,7 +82,7 @@ body::before{
 
 /* Ensure hero text stays above hero media */
 .hero-copy{position:relative;z-index:2000}
-.hero-media{position:relative;z-index:10}
+.hero-media{position:relative;z-index:10;overflow:visible}
 
 /* product art transitions */
 .product-art{transition:opacity .32s ease, transform .5s ease}
@@ -120,10 +120,13 @@ body::before{
 
 /* Carousel controls */
 .hero-carousel{position:relative}
-.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:200;background:rgba(255,255,255,0.9);border:none;width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,12,38,0.12);cursor:pointer;font-weight:700;color:var(--purple-900)}
-.carousel-arrow.left{left:2%}
-.carousel-arrow.right{right:2%}
-.carousel-arrow:active{transform:translateY(-50%) scale(.98)}
+.carousel-arrow{position:absolute;top:50%;z-index:300;background:rgba(255,255,255,0.95);border:none;width:56px;height:56px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 34px rgba(16,12,38,0.12);cursor:pointer;font-weight:700;color:var(--purple-900)}
+/* Keep arrows vertically centered and place them just outside the image edges.
+   Use translate to center the arrow circle on the edge: left:0 + translate(-50%) places it half outside. */
+.hero-media .carousel-arrow.left{left:-70px;transform:translateY(-50%)}
+.hero-media .carousel-arrow.right{right:-70px;transform:translateY(-50%)}
+.hero-media .carousel-arrow.left:active{transform:translateY(-50%) scale(.98)}
+.hero-media .carousel-arrow.right:active{transform:translateY(-50%) scale(.98)}
 
 .carousel-indicators{position:absolute;left:50%;transform:translateX(-50%);bottom:-28px;display:flex;gap:12px}
 .carousel-indicators button{width:12px;height:12px;border-radius:50%;border:none;background:rgba(16,12,38,0.06);cursor:pointer}
