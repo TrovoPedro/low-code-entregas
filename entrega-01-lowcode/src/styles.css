@@ -6,6 +6,7 @@
   --bg: #ffffff;
   --muted: #6b6b7a;
   --container: 1200px;
+  --media-size: 360px; /* unified image height */
 }
 
 /* Optional local SF Pro (place font files in public/fonts and they will be used) */
@@ -46,7 +47,7 @@ body::before{
 }
 
 .container{width: min(96%, var(--container));margin: 0 auto}
-.site-header{position:sticky;top:0;background:rgba(255,255,255,0.6);padding:18px 0;backdrop-filter: blur(6px);box-shadow:0 1px 0 rgba(16,12,38,0.04)}
+.site-header{position:sticky;top:0;background:rgba(255,255,255,0.6);padding:18px 0;backdrop-filter: blur(6px);box-shadow:0 1px 0 rgba(16,12,38,0.04);z-index:120}
 .header-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
 .logo{font-weight:800;color:var(--purple-900);letter-spacing:0.6px;display:flex;align-items:center;gap:12px}
 .logo img{height:36px}
@@ -56,7 +57,7 @@ body::before{
 .header-actions{justify-self:end}
 
 .hero{padding:110px 0 120px}
-.hero-inner{display:grid;grid-template-columns:minmax(320px,1fr) 640px;gap:56px;align-items:center}
+.hero-inner{display:grid;grid-template-columns:minmax(320px,1fr) var(--media-size);gap:56px;align-items:center}
 .hero-copy h1{font-size:clamp(48px, 8.6vw, 100px);margin:0 0 18px 0;line-height:0.96;font-weight:900;color:var(--purple-900);letter-spacing:-1px}
 .lede{font-size:18px;color:var(--muted);margin:12px 0 30px;max-width:64ch}
 
@@ -74,24 +75,28 @@ body::before{
 .hero-features{display:flex;gap:20px;margin:18px 0 0;padding:0;list-style:none;color:var(--muted)}
 
 .device-mock{position:relative;width:100%;max-width:720px;margin-left:auto}
-.device-mock .product-art{width:100%;height:auto;border-radius:18px;display:block;box-shadow:0 48px 120px rgba(43,0,54,0.12);transform-origin:center}
+.device-mock .product-art{width:100%;height:var(--media-size);border-radius:18px;display:block;box-shadow:0 48px 120px rgba(43,0,54,0.12);transform-origin:center;position:relative;z-index:0}
 .device-mock .product-art:hover{transform:translateY(-6px) rotate(-1deg) scale(1.02)}
 .device-mock .device-glow{opacity:.95}
-.device-glow{position:absolute;left:12%;top:18%;width:70%;height:55%;border-radius:28px;filter:blur(36px);background:linear-gradient(90deg,var(--purple-300), rgba(139,92,246,0.12));pointer-events:none}
+.device-glow{position:absolute;left:12%;top:18%;width:70%;height:55%;border-radius:28px;filter:blur(36px);background:linear-gradient(90deg,var(--purple-300), rgba(139,92,246,0.12));pointer-events:none;z-index:0}
+
+/* Ensure hero text stays above hero media */
+.hero-copy{position:relative;z-index:2000}
+.hero-media{position:relative;z-index:10}
 
 /* product art transitions */
 .product-art{transition:opacity .32s ease, transform .5s ease}
 .product-art.fade-out{opacity:0}
 
 /* Improved image presentation */
-.img-figure{position:relative;overflow:hidden;border-radius:18px;background:#fff}
+.img-figure{position:relative;overflow:hidden;border-radius:18px;background:#fff;height:var(--media-size)}
 .img-figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(139,92,246,0.08), rgba(139,92,246,0.02));mix-blend-mode:multiply;opacity:0.12;pointer-events:none;transition:opacity .3s}
 .img-figure:hover::after{opacity:0.18}
 .img-figure-img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:contrast(1.03) saturate(1.06);transition:transform .45s ease,filter .28s ease}
 .img-figure .product-art{border-radius:18px}
 
 /* larger card images for stronger visual impact */
-.card .img-figure{height:360px}
+.card .img-figure{height:var(--media-size)}
 .card .img-figure-img{height:100%}
 
 /* hero specific overlay more pronounced */
@@ -99,7 +104,7 @@ body::before{
 .hero .device-glow{display:none}
 
 /* testimonial circular crop */
-.testimonial-inner .img-figure{width:260px;height:260px;border-radius:999px;overflow:hidden}
+.testimonial-inner .img-figure{width:var(--media-size);height:var(--media-size);border-radius:999px;overflow:hidden}
 .testimonial-inner .img-figure-img{width:100%;height:100%;object-fit:cover}
 
 /* accessible focus styles */
@@ -115,9 +120,9 @@ body::before{
 
 /* Carousel controls */
 .hero-carousel{position:relative}
-.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:40;background:rgba(255,255,255,0.9);border:none;width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,12,38,0.12);cursor:pointer;font-weight:700;color:var(--purple-900)}
-.carousel-arrow.left{left:8%}
-.carousel-arrow.right{right:8%}
+.carousel-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:200;background:rgba(255,255,255,0.9);border:none;width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(16,12,38,0.12);cursor:pointer;font-weight:700;color:var(--purple-900)}
+.carousel-arrow.left{left:2%}
+.carousel-arrow.right{right:2%}
 .carousel-arrow:active{transform:translateY(-50%) scale(.98)}
 
 .carousel-indicators{position:absolute;left:50%;transform:translateX(-50%);bottom:-28px;display:flex;gap:12px}
@@ -137,7 +142,7 @@ body::before{
 .banner{display:flex;align-items:center;gap:40px;max-width:var(--container);margin:0 auto;padding:28px}
 .banner .banner-copy{flex:1}
 .banner .banner-media{flex:1}
-.banner .banner-media img, .banner .banner-media svg{width:100%;border-radius:18px;box-shadow:0 40px 120px rgba(16,12,38,0.08)}
+.banner .banner-media img, .banner .banner-media svg{width:100%;height:var(--media-size);border-radius:18px;box-shadow:0 40px 120px rgba(16,12,38,0.08);object-fit:cover}
 .banner .banner-cta{margin-top:18px}
 
 /* responsive banner */
@@ -160,7 +165,7 @@ body::before{
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
 .card{background:var(--bg);border-radius:16px;overflow:hidden;border:1px solid rgba(16,12,38,0.04);display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s}
 .card:hover{transform:translateY(-14px);box-shadow:0 60px 140px rgba(43,0,54,0.14)}
-.card img, .card svg{width:100%;height:220px;object-fit:cover;background:#fff;transition:transform .35s ease, filter .35s ease}
+.card img, .card svg{width:100%;height:var(--media-size);object-fit:cover;background:#fff;transition:transform .35s ease, filter .35s ease}
 .card img:hover, .card svg:hover{transform:scale(1.03);filter:brightness(.98)}
 .card-body{padding:22px}
 .card-body h3{margin:0 0 8px;font-size:20px}
@@ -175,7 +180,10 @@ body::before{
 .how-step h4{margin:0 0 6px}
 
 .testimonial-inner{display:flex;gap:24px;align-items:center;padding:36px;background:linear-gradient(90deg, rgba(139,92,246,0.03), #fff);border-radius:14px}
-.testimonial-inner img, .testimonial-inner svg{width:260px;height:170px;object-fit:cover;border-radius:14px}
+.testimonial-inner img, .testimonial-inner svg{width:var(--media-size);height:var(--media-size);object-fit:cover;border-radius:999px}
+
+/* Ensure product art sits above the glow so it doesn't cover text */
+.device-mock .product-art{position:relative;z-index:0}
 .testimonial-inner blockquote{font-size:18px;margin:0}
 cite{display:block;margin-top:8px;color:var(--muted);font-style:normal}
 
@@ -187,7 +195,7 @@ cite{display:block;margin-top:8px;color:var(--muted);font-style:normal}
 .faq summary{cursor:pointer;font-weight:600}
 
 /* modal */
-.modal-backdrop{position:fixed;inset:0;background:rgba(10,8,20,0.45);display:flex;align-items:center;justify-content:center;z-index:60;animation:fadeIn .18s ease}
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,8,20,0.45);display:flex;align-items:center;justify-content:center;z-index:1000;animation:fadeIn .18s ease}
 .modal{background:white;border-radius:12px;max-width:520px;width:94%;box-shadow:0 50px 120px rgba(16,12,38,0.35);position:relative;transform-origin:center;animation:modalIn .22s cubic-bezier(.2,.9,.3,1)}
 .modal-close{font-size:20px}
 
